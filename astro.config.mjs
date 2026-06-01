@@ -2,9 +2,9 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
-const SITE_URL = 'https://skillmythorg.github.io';
-const BASE_PATH = '/agentic-vc';
-const REPO_URL = 'https://github.com/trevarix/agentic-vc';
+const SITE_URL = 'https://trevarix.github.io';
+const BASE_PATH = '/avc-docs';
+const REPO_URL = 'https://github.com/trevarix/avc-docs';
 
 export default defineConfig({
   site: SITE_URL,
