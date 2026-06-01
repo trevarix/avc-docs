@@ -20,7 +20,7 @@ export default defineConfig({
         { icon: 'github', label: 'GitHub', href: REPO_URL },
       ],
       editLink: {
-        baseUrl: `${REPO_URL}/edit/main/docs/`,
+        baseUrl: `${REPO_URL}/edit/main/src/content/docs/`,
       },
       lastUpdated: true,
       pagination: true,
