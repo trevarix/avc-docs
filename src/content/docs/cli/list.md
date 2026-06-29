@@ -10,7 +10,32 @@ Lists all snapshots on the current branch, newest first.
 ```bash
 avc list
 avc list --json
+avc list --search "auth refactor"
+avc list --agent claude
+avc list --since 2024-06-01 --until 2024-06-30
+avc list --changed src/auth.go
+avc list --tag stable
+avc list --all              # snapshots from all branches, not just active
+avc list --limit 20
 ```
+
+`avc search <query>` is a shorthand alias for `avc list --search <query>`.
+
+## Flags
+
+| Flag | Description |
+|------|-------------|
+| `--search <text>` | Full-text search on label and notes |
+| `--agent <name>` | Filter by agent name (substring match) |
+| `--since <YYYY-MM-DD>` | Show snapshots after this date |
+| `--until <YYYY-MM-DD>` | Show snapshots before this date |
+| `--changed <path>` | Show snapshots that tracked this file path |
+| `--tag <tag>` | Show snapshots with this tag |
+| `--limit <n>` | Max results, `0` for unlimited (default 50) |
+| `--all` | Show snapshots from all branches, not just the active one |
+| `--json` | JSON output |
+
+Filters narrow the result set but do not widen branch scope — combine with `--all` to search across every branch.
 
 ## JSON output
 

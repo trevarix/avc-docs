@@ -9,10 +9,13 @@ Branches isolate agent work in `.avc/workspaces/<branch>/` so experiments never 
 
 ```bash
 avc branch create <name>       # create a branch from the current snapshot
-avc branch list                # list all branches; * marks active
+avc branch list                # list active branches; * marks active
 avc branch switch <name>       # switch active branch
 avc branch delete <name>       # delete branch + remove workspace
 avc branch diff <name>         # cumulative diff from branch point to branch HEAD
+avc branch rename <old> <new>  # rename a branch
+avc branch abandon <name>      # mark a branch abandoned (keeps history)
+avc branch prune --merged      # remove workspaces for merged branches
 ```
 
 ## `avc branch create`
@@ -44,9 +47,17 @@ JSON output:
 ## `avc branch list`
 
 ```bash
-avc branch list
+avc branch list                  # active branches only (default)
+avc branch list --all            # include merged and abandoned branches
+avc branch list --status merged  # filter by a specific status
 avc branch list --json
 ```
+
+| Flag | Description |
+|------|-------------|
+| `--all` | Show all branches including merged and abandoned |
+| `--status <status>` | Filter by status: `active`, `merged`, or `abandoned` |
+| `--json` | JSON output |
 
 JSON output:
 
@@ -86,6 +97,30 @@ avc branch diff feat-auth --json
 Returns the cumulative diff from the branch's base snapshot to the latest snapshot on that branch — i.e., "what has the agent done so far?".
 
 The JSON shape is identical to [`avc diff`](/agentic-vc/cli/diff/).
+
+## `avc branch rename`
+
+```bash
+avc branch rename feat-auth feat-authentication
+```
+
+Renames a branch in place. Its workspace directory, snapshots, and history are unaffected.
+
+## `avc branch abandon`
+
+```bash
+avc branch abandon feat-bad-idea
+```
+
+Marks a branch as `abandoned` without deleting anything — history, snapshots, and the workspace directory are all kept. Use this instead of `avc branch delete` when you want the branch to disappear from the default `avc branch list` view but remain recoverable.
+
+## `avc branch prune`
+
+```bash
+avc branch prune --merged
+```
+
+Deletes the **workspace directories** for every branch with status `merged`, reclaiming disk space. Database records and snapshots are kept — only the materialized files under `.avc/workspaces/<branch>/` are removed.
 
 ## Workflow example
 

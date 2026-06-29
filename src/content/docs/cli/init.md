@@ -19,7 +19,21 @@ avc init --skills claude-code,cursor,windsurf
 | Flag | Description |
 |------|-------------|
 | `--skills <list>` | Comma-separated agent frameworks to set up. Supported: `claude-code`, `cursor`, `windsurf`, `generic` |
+| `--yes`, `-y` | Skip the confirmation prompt when no AVC project exists at the path yet |
 | `--json` | JSON output |
+
+## Confirmation prompt
+
+If no AVC project exists at the target path yet, `avc init` asks before creating one:
+
+```
+⚠ No AVC project found at /path/to/project
+  Initialize a new AVC project here? [y/N]
+```
+
+Answering anything other than `y`/`yes` aborts with no changes made. This only fires on first-time bootstrap — re-running `avc init` on an already-initialized project never prompts.
+
+Pass `--yes` to skip the prompt in scripts or CI. `--json` mode also skips it, since machine consumers are presumed to know what they're asking for.
 
 ## JSON output
 
@@ -28,6 +42,7 @@ avc init --skills claude-code,cursor,windsurf
   "id": "proj-a1b2c3",
   "path": "/path/to/project",
   "name": "project",
+  "already_initialized": false,
   "success": true
 }
 ```

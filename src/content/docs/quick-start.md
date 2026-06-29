@@ -18,7 +18,7 @@ cd ~/my-project
 avc init
 ```
 
-This creates a `.avc/` directory with a SQLite database and a default `.avcignore` file. Re-running is safe; it's a no-op on already-initialized projects.
+Since no AVC project exists here yet, you'll be asked to confirm before one is created — answer `y` to continue, or pass `--yes` to skip the prompt in scripts/CI. This creates a `.avc/` directory with a SQLite database and a default `.avcignore` file. Re-running is safe; it's a no-op on already-initialized projects (and never re-prompts).
 
 If you want the agent integration files set up at the same time:
 

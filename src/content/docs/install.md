@@ -10,20 +10,43 @@ AVC ships as a single Go binary. Install once, use anywhere — terminal, VSCode
 ### macOS — Homebrew
 
 ```bash
-brew install skillmythorg/tap/avc
+brew install trevarix/tap/avc
 ```
 
-### Linux / macOS — one-line install
-
-```bash
-curl -sSL https://raw.githubusercontent.com/trevarix/agentic-vc/main/install.sh | sh
-```
-
-### Windows — PowerShell
+### Windows — Scoop
 
 ```powershell
-irm https://raw.githubusercontent.com/trevarix/agentic-vc/main/install.ps1 | iex
+scoop bucket add trevarix https://github.com/trevarix/scoop-bucket
+scoop install avc
 ```
+
+### Linux — direct download
+
+There's no install script — grab the release tarball and move the binary onto your `PATH`:
+
+```bash
+curl -sfL https://github.com/trevarix/agentic-vc/releases/latest/download/avc_<version>_linux_amd64.tar.gz | tar xz
+sudo mv avc /usr/local/bin/
+```
+
+Replace `<version>` with the release version (e.g. `1.0.0`), matching the asset names on the [Releases page](https://github.com/trevarix/agentic-vc/releases).
+
+### macOS / Windows — direct download (without a package manager)
+
+Download the archive for your OS/arch from [GitHub Releases](https://github.com/trevarix/agentic-vc/releases), then:
+
+```bash
+# macOS — remove the Gatekeeper quarantine flag
+xattr -rd com.apple.quarantine avc
+chmod +x avc
+sudo mv avc /usr/local/bin/
+```
+
+```powershell
+# Windows — move into an existing PATH location (no admin needed)
+Move-Item avc.exe "$env:LOCALAPPDATA\Microsoft\WindowsApps\"
+```
+> You can also right-click `avc.exe` → Properties → check **Unblock** → OK before moving it, to dismiss the SmartScreen warning on first run.
 
 ### Build from source
 

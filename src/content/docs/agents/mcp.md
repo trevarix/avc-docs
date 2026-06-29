@@ -30,10 +30,20 @@ The server runs over stdio: it reads JSON-RPC 2.0 messages on stdin and writes r
 | `avc_branch_list` | [`avc branch list`](/agentic-vc/cli/branch/) |
 | `avc_branch_switch` | [`avc branch switch`](/agentic-vc/cli/branch/) |
 | `avc_branch_diff` | [`avc branch diff`](/agentic-vc/cli/branch/) |
+| `avc_branch_rename` | [`avc branch rename`](/agentic-vc/cli/branch/) |
+| `avc_branch_abandon` | [`avc branch abandon`](/agentic-vc/cli/branch/) |
+| `avc_branch_prune_merged` | [`avc branch prune --merged`](/agentic-vc/cli/branch/) |
 | `avc_merge_preview` | [`avc merge --preview`](/agentic-vc/cli/merge/) |
 | `avc_merge` | [`avc merge`](/agentic-vc/cli/merge/) |
 | `avc_merge_abort` | [`avc merge --abort`](/agentic-vc/cli/merge/) |
 | `avc_run_in_workspace` | Run a shell command inside a branch workspace |
+| `avc_status` | [`avc status`](/agentic-vc/cli/status/) |
+| `avc_restore_file` | [`avc restore-file`](/agentic-vc/cli/restore-file/) |
+| `avc_annotate` | [`avc annotate`](/agentic-vc/cli/annotate/) |
+| `avc_tag_snapshot` | [`avc snapshot tag`](/agentic-vc/cli/snapshot/) |
+| `avc_untag_snapshot` | [`avc snapshot untag`](/agentic-vc/cli/snapshot/) |
+| `avc_list_conflicts` | List files with unresolved merge conflict markers after `avc_merge` reports conflicts |
+| `avc_resolve_conflict` | Resolve one conflicted file by choosing `ours`/`theirs`/`content` |
 
 Each tool's JSON Schema is published via `tools/list` so the agent can discover them programmatically.
 

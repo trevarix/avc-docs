@@ -56,3 +56,22 @@ The active branch determines which branch the snapshot lands on. Use `avc branch
 If you're on a non-main branch, AVC walks the **workspace directory** (`.avc/workspaces/<branch>/`), not the real project root. This is how branch isolation works — snapshots on a branch capture workspace state, the real project is untouched.
 
 On `main`, the project root is walked directly.
+
+## `avc snapshot tag` / `avc snapshot untag`
+
+```bash
+avc snapshot tag snap-abc123 stable
+avc snapshot untag snap-abc123 stable
+```
+
+Tags a snapshot with a machine-readable label (e.g. `stable`, `v1.2.0`). Tags are searchable via `avc list --tag <tag>`. Applying the same tag twice is a no-op.
+
+JSON output:
+
+```json
+{
+  "snapshot_id": "snap-abc123",
+  "tag": "stable",
+  "success": true
+}
+```
