@@ -1,4 +1,4 @@
----
+﻿---
 title: Claude Code
 description: Integrate AVC with Claude Code via MCP and skills.
 sidebar:
@@ -61,7 +61,7 @@ What Claude does (with AVC integration):
 3. Calls `avc_snapshot` after each meaningful change
 4. When done, summarizes what it did and asks if you want to merge
 
-You can run `avc list` (or open the [Web UI](/agentic-vc/web-ui/)) at any time to see every snapshot Claude took.
+You can run `avc list` (or open the [Web UI](/web-ui/)) at any time to see every snapshot Claude took.
 
 ## Updating skills
 

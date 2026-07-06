@@ -1,9 +1,9 @@
----
+﻿---
 title: avc branch
 description: Create and manage branches (agent workspaces).
 ---
 
-Branches isolate agent work in `.avc/workspaces/<branch>/` so experiments never touch your real project until you merge. See [Concepts → Branches](/agentic-vc/concepts/branches/) for the conceptual model.
+Branches isolate agent work in `.avc/workspaces/<branch>/` so experiments never touch your real project until you merge. See [Concepts → Branches](/concepts/branches/) for the conceptual model.
 
 ## Subcommands
 
@@ -96,7 +96,7 @@ avc branch diff feat-auth --json
 
 Returns the cumulative diff from the branch's base snapshot to the latest snapshot on that branch — i.e., "what has the agent done so far?".
 
-The JSON shape is identical to [`avc diff`](/agentic-vc/cli/diff/).
+The JSON shape is identical to [`avc diff`](/cli/diff/).
 
 ## `avc branch rename`
 

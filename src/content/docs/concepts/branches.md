@@ -1,4 +1,4 @@
----
+﻿---
 title: Branches
 description: Isolated agent workspaces for parallel experimentation.
 ---
@@ -86,7 +86,7 @@ avc merge feat-auth               # actually merge
 avc merge --abort                 # undo if something went wrong
 ```
 
-See [Concepts → Merges](/agentic-vc/concepts/merges/) for the full three-way merge story.
+See [Concepts → Merges](/concepts/merges/) for the full three-way merge story.
 
 ## What branches are not
 

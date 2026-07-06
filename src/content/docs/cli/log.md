@@ -1,4 +1,4 @@
----
+﻿---
 title: avc log
 description: Tree-style history of snapshots on the active branch.
 ---
@@ -12,4 +12,4 @@ avc log
 avc log --json
 ```
 
-Human output uses a tree diagram showing each snapshot ID, label, timestamp, and agent. The `--json` output is identical to [`avc list`](/agentic-vc/cli/list/).
+Human output uses a tree diagram showing each snapshot ID, label, timestamp, and agent. The `--json` output is identical to [`avc list`](/cli/list/).

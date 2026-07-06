@@ -1,4 +1,4 @@
----
+﻿---
 title: avc restore
 description: Roll back the entire project to a previous snapshot.
 ---
@@ -50,5 +50,5 @@ On `main`, restore writes to the project root directly.
 
 ## See also
 
-- [`avc restore-file`](/agentic-vc/cli/restore-file/) — restore one file instead of the whole snapshot
-- [`avc diff-current`](/agentic-vc/cli/diff-current/) — preview what a restore would change
+- [`avc restore-file`](/cli/restore-file/) — restore one file instead of the whole snapshot
+- [`avc diff-current`](/cli/diff-current/) — preview what a restore would change

@@ -1,4 +1,4 @@
----
+﻿---
 title: avc gc
 description: Garbage-collect unreferenced objects from the object store.
 ---
@@ -41,4 +41,4 @@ avc gc          # see what's now unreferenced
 avc gc --run    # actually reclaim the space
 ```
 
-Object content is never modified — `avc gc` only removes blobs that no snapshot, on any branch, points to. See [Concepts → Storage](/agentic-vc/concepts/storage/) for how the content-addressed object store works.
+Object content is never modified — `avc gc` only removes blobs that no snapshot, on any branch, points to. See [Concepts → Storage](/concepts/storage/) for how the content-addressed object store works.

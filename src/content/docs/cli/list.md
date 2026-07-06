@@ -1,4 +1,4 @@
----
+﻿---
 title: avc list
 description: List all snapshots on the active branch, newest first.
 ---
@@ -60,4 +60,4 @@ Returns an empty array `[]` if no snapshots exist.
 
 - Only snapshots on the **active branch** are returned. Use `avc branch switch <name>` to see another branch's snapshots
 - Order is newest first by `timestamp`
-- For tree-style history output, use [`avc log`](/agentic-vc/cli/log/) instead
+- For tree-style history output, use [`avc log`](/cli/log/) instead

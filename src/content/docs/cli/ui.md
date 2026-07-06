@@ -1,4 +1,4 @@
----
+﻿---
 title: avc ui
 description: Start the standalone web UI server.
 ---
@@ -42,5 +42,5 @@ The default `127.0.0.1` binding is loopback-only and safe by default.
 
 ## See also
 
-- [Web UI documentation](/agentic-vc/web-ui/) — features and screenshots
-- [REST API reference](/agentic-vc/web-ui/api/) — the HTTP endpoints behind the UI
+- [Web UI documentation](/web-ui/) — features and screenshots
+- [REST API reference](/web-ui/api/) — the HTTP endpoints behind the UI

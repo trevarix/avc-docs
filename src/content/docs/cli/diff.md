@@ -1,4 +1,4 @@
----
+﻿---
 title: avc diff
 description: Compare two snapshots file-by-file.
 ---
@@ -63,4 +63,4 @@ For each changed file, the unified diff is generated from the stored object blob
 
 ## See also
 
-- [`avc diff-current`](/agentic-vc/cli/diff-current/) — compare a snapshot to the working tree instead of another snapshot
+- [`avc diff-current`](/cli/diff-current/) — compare a snapshot to the working tree instead of another snapshot

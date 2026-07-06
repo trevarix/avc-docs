@@ -1,4 +1,4 @@
----
+﻿---
 title: REST API
 description: HTTP endpoints exposed by `avc ui`. Use these to build custom integrations.
 sidebar:
@@ -13,7 +13,7 @@ The `avc ui` server is also a small REST API. Every endpoint returns JSON. The w
 http://127.0.0.1:3004
 ```
 
-Add `--port` to change the port (see [`avc ui`](/agentic-vc/cli/ui/) flags).
+Add `--port` to change the port (see [`avc ui`](/cli/ui/) flags).
 
 ## Endpoints
 
@@ -74,7 +74,7 @@ curl -X POST http://127.0.0.1:3004/api/restore \
 curl "http://127.0.0.1:3004/api/diff?from=snap-abc&to=snap-def"
 ```
 
-Returns the same JSON shape as [`avc diff`](/agentic-vc/cli/diff/).
+Returns the same JSON shape as [`avc diff`](/cli/diff/).
 
 ## Error responses
 

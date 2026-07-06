@@ -1,4 +1,4 @@
----
+﻿---
 title: Install & Setup
 description: Get the AVC VSCode extension running in three steps.
 sidebar:
@@ -9,7 +9,7 @@ The AVC extension brings snapshot management directly into VSCode — sidebar, S
 
 ## Prerequisites
 
-- The `avc` CLI must be on your `PATH` (run `avc --version` to confirm) — see [Installation](/agentic-vc/install/)
+- The `avc` CLI must be on your `PATH` (run `avc --version` to confirm) — see [Installation](/install/)
 - Your project must be initialized with `avc init`
 - VSCode **1.85+**
 
@@ -48,5 +48,5 @@ You should see all of the following in your project window:
 - An **AVC group** in the Source Control panel (`Ctrl+Shift+G`)
 
 :::tip
-If the sidebar shows "Loading…" forever, run `avc --version` in your terminal. If it errors, the extension can't find the CLI — set `avc.cliPath` in [settings](/agentic-vc/extension/settings/).
+If the sidebar shows "Loading…" forever, run `avc --version` in your terminal. If it errors, the extension can't find the CLI — set `avc.cliPath` in [settings](/extension/settings/).
 :::

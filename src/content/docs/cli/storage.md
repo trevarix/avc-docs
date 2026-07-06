@@ -1,4 +1,4 @@
----
+﻿---
 title: avc storage
 description: Show AVC disk usage for the current project.
 ---
@@ -47,4 +47,4 @@ avc storage --json
 
 `branches` and `snapshots` are only populated when `--by-branch` / `--by-snapshot` (or `--json`) is used.
 
-If usage is high, run [`avc gc`](/agentic-vc/cli/gc/) to reclaim space from objects no longer referenced by any snapshot.
+If usage is high, run [`avc gc`](/cli/gc/) to reclaim space from objects no longer referenced by any snapshot.

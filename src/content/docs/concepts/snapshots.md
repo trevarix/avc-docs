@@ -1,4 +1,4 @@
----
+﻿---
 title: Snapshots
 description: The core unit of AVC — content-addressed, immutable, point-in-time captures.
 ---
@@ -17,7 +17,7 @@ A **snapshot** is AVC's atomic unit: a complete, content-addressed picture of yo
 | `files` | list | Every tracked file with its SHA256 hash and size |
 | `branch_id` | string | Which branch the snapshot belongs to |
 
-The snapshot does **not** contain file bytes directly — they live in the content-addressed object store and are referenced by hash. See [Storage Layout](/agentic-vc/concepts/storage/) for the details.
+The snapshot does **not** contain file bytes directly — they live in the content-addressed object store and are referenced by hash. See [Storage Layout](/concepts/storage/) for the details.
 
 ## How snapshots are created
 
@@ -82,4 +82,4 @@ You can edit `.avcignore` at any time. It's reread on every snapshot.
 | Show every snapshot containing a file | `avc file-history <path>` |
 | Line-by-line attribution | `avc annotate <path>` |
 
-See the [CLI Reference](/agentic-vc/cli/) for full details.
+See the [CLI Reference](/cli/) for full details.

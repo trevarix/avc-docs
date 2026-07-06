@@ -1,9 +1,9 @@
----
+﻿---
 title: avc merge
 description: Merge a branch into main with three-way conflict detection.
 ---
 
-Three-way merge using the branch point, main HEAD, and branch HEAD. Clean changes auto-apply; conflicting files get standard `<<<` / `===` / `>>>` markers written to the working tree. See [Concepts → Merges](/agentic-vc/concepts/merges/) for the conceptual model.
+Three-way merge using the branch point, main HEAD, and branch HEAD. Clean changes auto-apply; conflicting files get standard `<<<` / `===` / `>>>` markers written to the working tree. See [Concepts → Merges](/concepts/merges/) for the conceptual model.
 
 ## Usage
 

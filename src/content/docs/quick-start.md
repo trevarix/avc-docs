@@ -1,4 +1,4 @@
----
+﻿---
 title: Quick Start
 description: A 5-minute walkthrough of AVC's core workflow — snapshot, diff, restore.
 ---
@@ -6,7 +6,7 @@ description: A 5-minute walkthrough of AVC's core workflow — snapshot, diff, r
 This guide walks you through AVC's core loop: initialize a project, take a baseline snapshot, make changes, see the diff, and restore. By the end you'll know enough to use AVC daily.
 
 :::tip[Prerequisites]
-Install the AVC CLI first — see the [Installation guide](/agentic-vc/install/). Verify with `avc --version`.
+Install the AVC CLI first — see the [Installation guide](/install/). Verify with `avc --version`.
 :::
 
 ## 1. Initialize a project
@@ -81,7 +81,7 @@ For richer output:
 avc diff snap-a1b2c3d4 snap-e5f6g7h8 --json
 ```
 
-You'll get the line-level unified diff for every changed file as JSON — feed it into another tool, or render it in the [Web UI](/agentic-vc/web-ui/).
+You'll get the line-level unified diff for every changed file as JSON — feed it into another tool, or render it in the [Web UI](/web-ui/).
 
 ## 6. Roll back if needed
 
@@ -102,6 +102,6 @@ You now know the core loop. From here:
 - **List all snapshots** → `avc list`
 - **See snapshot details + file tree** → `avc info snap-a1b2c3d4`
 - **Open a graphical browser** → `avc ui` then visit `http://localhost:3004/`
-- **Use branches for parallel agent runs** → see [Concepts → Branches](/agentic-vc/concepts/branches/)
-- **Browse from VSCode** → install the [VSCode Extension](/agentic-vc/extension/)
-- **Wire it up to your AI agent** → see [Agent Integration](/agentic-vc/agents/)
+- **Use branches for parallel agent runs** → see [Concepts → Branches](/concepts/branches/)
+- **Browse from VSCode** → install the [VSCode Extension](/extension/)
+- **Wire it up to your AI agent** → see [Agent Integration](/agents/)

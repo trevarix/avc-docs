@@ -1,4 +1,4 @@
----
+﻿---
 title: avc init
 description: Initialize AVC for a project.
 ---
@@ -71,4 +71,4 @@ For each requested framework, AVC writes the right files:
 | `windsurf` | `.codeium/windsurf/mcp_config.json`, appends to `.windsurfrules` |
 | `generic` | `AGENT_INSTRUCTIONS.md` |
 
-These tell the agent framework how to invoke AVC's MCP server and when to use each tool. See [Agent Integration](/agentic-vc/agents/) for details.
+These tell the agent framework how to invoke AVC's MCP server and when to use each tool. See [Agent Integration](/agents/) for details.

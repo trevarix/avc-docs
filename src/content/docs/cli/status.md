@@ -1,11 +1,11 @@
----
+﻿---
 title: avc status
 description: Show files changed since the last snapshot.
 ---
 
 Compares the current working tree against the last snapshot on the active branch. Output mirrors `git status`: one line per changed file with an A/M/D prefix and line counts.
 
-On an agent branch, this compares the **branch workspace** (`.avc/workspaces/<branch>/`), not the real project root — consistent with how [`avc snapshot`](/agentic-vc/cli/snapshot/) is branch-aware.
+On an agent branch, this compares the **branch workspace** (`.avc/workspaces/<branch>/`), not the real project root — consistent with how [`avc snapshot`](/cli/snapshot/) is branch-aware.
 
 ## Usage
 

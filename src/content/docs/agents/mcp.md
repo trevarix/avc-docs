@@ -1,4 +1,4 @@
----
+﻿---
 title: MCP Server
 description: How AVC exposes its commands as MCP tools for AI agents.
 sidebar:
@@ -20,28 +20,28 @@ The server runs over stdio: it reads JSON-RPC 2.0 messages on stdin and writes r
 
 | Tool | Maps to |
 |------|---------|
-| `avc_snapshot` | [`avc snapshot`](/agentic-vc/cli/snapshot/) |
-| `avc_list` | [`avc list`](/agentic-vc/cli/list/) |
-| `avc_info` | [`avc info`](/agentic-vc/cli/info/) |
-| `avc_delete` | [`avc delete`](/agentic-vc/cli/delete/) |
-| `avc_diff` | [`avc diff`](/agentic-vc/cli/diff/) |
-| `avc_restore` | [`avc restore`](/agentic-vc/cli/restore/) |
-| `avc_branch_create` | [`avc branch create`](/agentic-vc/cli/branch/) |
-| `avc_branch_list` | [`avc branch list`](/agentic-vc/cli/branch/) |
-| `avc_branch_switch` | [`avc branch switch`](/agentic-vc/cli/branch/) |
-| `avc_branch_diff` | [`avc branch diff`](/agentic-vc/cli/branch/) |
-| `avc_branch_rename` | [`avc branch rename`](/agentic-vc/cli/branch/) |
-| `avc_branch_abandon` | [`avc branch abandon`](/agentic-vc/cli/branch/) |
-| `avc_branch_prune_merged` | [`avc branch prune --merged`](/agentic-vc/cli/branch/) |
-| `avc_merge_preview` | [`avc merge --preview`](/agentic-vc/cli/merge/) |
-| `avc_merge` | [`avc merge`](/agentic-vc/cli/merge/) |
-| `avc_merge_abort` | [`avc merge --abort`](/agentic-vc/cli/merge/) |
+| `avc_snapshot` | [`avc snapshot`](/cli/snapshot/) |
+| `avc_list` | [`avc list`](/cli/list/) |
+| `avc_info` | [`avc info`](/cli/info/) |
+| `avc_delete` | [`avc delete`](/cli/delete/) |
+| `avc_diff` | [`avc diff`](/cli/diff/) |
+| `avc_restore` | [`avc restore`](/cli/restore/) |
+| `avc_branch_create` | [`avc branch create`](/cli/branch/) |
+| `avc_branch_list` | [`avc branch list`](/cli/branch/) |
+| `avc_branch_switch` | [`avc branch switch`](/cli/branch/) |
+| `avc_branch_diff` | [`avc branch diff`](/cli/branch/) |
+| `avc_branch_rename` | [`avc branch rename`](/cli/branch/) |
+| `avc_branch_abandon` | [`avc branch abandon`](/cli/branch/) |
+| `avc_branch_prune_merged` | [`avc branch prune --merged`](/cli/branch/) |
+| `avc_merge_preview` | [`avc merge --preview`](/cli/merge/) |
+| `avc_merge` | [`avc merge`](/cli/merge/) |
+| `avc_merge_abort` | [`avc merge --abort`](/cli/merge/) |
 | `avc_run_in_workspace` | Run a shell command inside a branch workspace |
-| `avc_status` | [`avc status`](/agentic-vc/cli/status/) |
-| `avc_restore_file` | [`avc restore-file`](/agentic-vc/cli/restore-file/) |
-| `avc_annotate` | [`avc annotate`](/agentic-vc/cli/annotate/) |
-| `avc_tag_snapshot` | [`avc snapshot tag`](/agentic-vc/cli/snapshot/) |
-| `avc_untag_snapshot` | [`avc snapshot untag`](/agentic-vc/cli/snapshot/) |
+| `avc_status` | [`avc status`](/cli/status/) |
+| `avc_restore_file` | [`avc restore-file`](/cli/restore-file/) |
+| `avc_annotate` | [`avc annotate`](/cli/annotate/) |
+| `avc_tag_snapshot` | [`avc snapshot tag`](/cli/snapshot/) |
+| `avc_untag_snapshot` | [`avc snapshot untag`](/cli/snapshot/) |
 | `avc_list_conflicts` | List files with unresolved merge conflict markers after `avc_merge` reports conflicts |
 | `avc_resolve_conflict` | Resolve one conflicted file by choosing `ours`/`theirs`/`content` |
 
@@ -57,9 +57,9 @@ avc init --skills claude-code,cursor,windsurf,generic
 
 This writes the right config files for each framework into your project. See the per-framework guides:
 
-- [Claude Code](/agentic-vc/agents/claude-code/)
-- [Cursor](/agentic-vc/agents/cursor/)
-- [Windsurf](/agentic-vc/agents/windsurf/)
+- [Claude Code](/agents/claude-code/)
+- [Cursor](/agents/cursor/)
+- [Windsurf](/agents/windsurf/)
 
 ## Manual integration
 

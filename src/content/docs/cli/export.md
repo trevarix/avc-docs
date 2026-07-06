@@ -1,9 +1,9 @@
----
+﻿---
 title: avc export
 description: Export AVC history to a portable archive.
 ---
 
-Bundles snapshots, branches, and file objects into a single `.tar.gz` file that can be moved to another machine and re-imported with [`avc import`](/agentic-vc/cli/import/).
+Bundles snapshots, branches, and file objects into a single `.tar.gz` file that can be moved to another machine and re-imported with [`avc import`](/cli/import/).
 
 ## Usage
 
@@ -36,4 +36,4 @@ avc export --json
 
 ## See also
 
-- [`avc import`](/agentic-vc/cli/import/) — bring an exported archive into another project
+- [`avc import`](/cli/import/) — bring an exported archive into another project

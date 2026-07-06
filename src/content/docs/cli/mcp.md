@@ -1,4 +1,4 @@
----
+﻿---
 title: avc mcp
 description: Start the MCP (Model Context Protocol) server for AI agents.
 ---
@@ -57,7 +57,7 @@ Don't configure the MCP server by hand — let AVC do it:
 avc init --skills claude-code,cursor,windsurf
 ```
 
-This writes the right MCP config files for each framework. See [Agent Integration](/agentic-vc/agents/) for details.
+This writes the right MCP config files for each framework. See [Agent Integration](/agents/) for details.
 
 ## Manual integration
 

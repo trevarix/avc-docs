@@ -1,4 +1,4 @@
----
+﻿---
 title: avc run
 description: Run a command in an agent branch workspace, sandboxed.
 ---
@@ -47,4 +47,4 @@ In human-readable mode, stdout/stderr are streamed directly and the process exit
 
 ## Agent usage
 
-This command backs the `avc_run_in_workspace` MCP tool. Per AVC's agent guidelines, agents must show the user the exact command and get approval before calling it — running arbitrary shell commands is consequential even when sandboxed. See [Agent Integration](/agentic-vc/agents/) for details.
+This command backs the `avc_run_in_workspace` MCP tool. Per AVC's agent guidelines, agents must show the user the exact command and get approval before calling it — running arbitrary shell commands is consequential even when sandboxed. See [Agent Integration](/agents/) for details.

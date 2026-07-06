@@ -1,4 +1,4 @@
----
+﻿---
 title: avc info
 description: Show snapshot metadata and full file list.
 ---
@@ -32,5 +32,5 @@ avc info snap-abc123 --json
 
 ## See also
 
-- [`avc cat`](/agentic-vc/cli/cat/) — print a file's contents from this snapshot
-- [`avc restore-file`](/agentic-vc/cli/restore-file/) — restore one file from this snapshot
+- [`avc cat`](/cli/cat/) — print a file's contents from this snapshot
+- [`avc restore-file`](/cli/restore-file/) — restore one file from this snapshot

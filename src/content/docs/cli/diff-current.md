@@ -1,9 +1,9 @@
----
+﻿---
 title: avc diff-current
 description: Compare a snapshot against the current working tree.
 ---
 
-Shows what's different between a snapshot and the files currently on disk. Same JSON shape as [`avc diff`](/agentic-vc/cli/diff/).
+Shows what's different between a snapshot and the files currently on disk. Same JSON shape as [`avc diff`](/cli/diff/).
 
 ## Usage
 

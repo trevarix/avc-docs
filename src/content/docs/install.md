@@ -1,4 +1,4 @@
----
+﻿---
 title: Installation
 description: Install the AVC CLI and optional clients (VSCode extension, web UI).
 ---
@@ -25,15 +25,15 @@ scoop install avc
 There's no install script — grab the release tarball and move the binary onto your `PATH`:
 
 ```bash
-curl -sfL https://github.com/trevarix/agentic-vc/releases/latest/download/avc_<version>_linux_amd64.tar.gz | tar xz
+curl -sfL https://github.com/trevarix/releases/latest/download/avc_<version>_linux_amd64.tar.gz | tar xz
 sudo mv avc /usr/local/bin/
 ```
 
-Replace `<version>` with the release version (e.g. `1.0.0`), matching the asset names on the [Releases page](https://github.com/trevarix/agentic-vc/releases).
+Replace `<version>` with the release version (e.g. `1.0.0`), matching the asset names on the [Releases page](https://github.com/trevarix/releases).
 
 ### macOS / Windows — direct download (without a package manager)
 
-Download the archive for your OS/arch from [GitHub Releases](https://github.com/trevarix/agentic-vc/releases), then:
+Download the archive for your OS/arch from [GitHub Releases](https://github.com/trevarix/releases), then:
 
 ```bash
 # macOS — remove the Gatekeeper quarantine flag
@@ -85,11 +85,11 @@ The extension calls the `avc` CLI under the hood, so install the CLI first.
 
 ### From a VSIX
 
-1. Download the latest `.vsix` from [GitHub Releases](https://github.com/trevarix/agentic-vc/releases)
+1. Download the latest `.vsix` from [GitHub Releases](https://github.com/trevarix/releases)
 2. In VSCode: `Ctrl+Shift+P` → **Extensions: Install from VSIX…**
 3. Pick the downloaded file
 
-See the [VSCode Extension guide](/agentic-vc/extension/) for a tour of the features.
+See the [VSCode Extension guide](/extension/) for a tour of the features.
 
 ## Web UI
 
@@ -101,7 +101,7 @@ avc ui
 
 Your default browser opens to `http://127.0.0.1:3004/`. Use this if you don't use VSCode or want to share a snapshot browser with non-technical teammates.
 
-See the [Web UI guide](/agentic-vc/web-ui/) for screenshots and the REST API reference.
+See the [Web UI guide](/web-ui/) for screenshots and the REST API reference.
 
 ## MCP server (for AI agents)
 
@@ -117,7 +117,7 @@ To configure popular agent frameworks automatically:
 avc init --skills claude-code,cursor,windsurf
 ```
 
-This writes the right config files for each framework into your project. See [Agent Integration](/agentic-vc/agents/) for details.
+This writes the right config files for each framework into your project. See [Agent Integration](/agents/) for details.
 
 ## Requirements
 
@@ -132,4 +132,4 @@ AVC has no runtime dependencies — no Python, no Node.js, no CGO. The SQLite im
 
 ## Next steps
 
-After installing, walk through the [Quick Start guide](/agentic-vc/quick-start/) to take your first snapshot.
+After installing, walk through the [Quick Start guide](/quick-start/) to take your first snapshot.

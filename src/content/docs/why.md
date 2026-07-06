@@ -1,4 +1,4 @@
----
+﻿---
 title: Why AVC
 description: Why a new version control system designed for AI agents.
 ---
@@ -55,6 +55,6 @@ AVC is **not** trying to replace Git. Use Git for your repo, branches, PRs, and 
 
 ## Next steps
 
-- [Install AVC](/agentic-vc/install/) — three install paths for any OS
-- [Quick Start](/agentic-vc/quick-start/) — take your first snapshot in 5 minutes
-- [Concepts → Snapshots](/agentic-vc/concepts/snapshots/) — how the content-addressed store works
+- [Install AVC](/install/) — three install paths for any OS
+- [Quick Start](/quick-start/) — take your first snapshot in 5 minutes
+- [Concepts → Snapshots](/concepts/snapshots/) — how the content-addressed store works

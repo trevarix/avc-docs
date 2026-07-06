@@ -1,9 +1,9 @@
----
+﻿---
 title: avc import
 description: Import AVC history from an archive.
 ---
 
-Merges snapshots, branches, and objects from an [`avc export`](/agentic-vc/cli/export/) bundle into the current project.
+Merges snapshots, branches, and objects from an [`avc export`](/cli/export/) bundle into the current project.
 
 Objects are written using content-addressed paths — blobs already present are silently skipped. Database rows are inserted with `INSERT OR IGNORE`, so existing snapshots with the same ID are left unchanged. Importing is therefore safe to re-run.
 
@@ -35,4 +35,4 @@ avc import --from archive.avc.tar.gz --json
 
 `skipped_rows` counts rows that already existed in the target project and were left untouched.
 
-After importing, run [`avc list`](/agentic-vc/cli/list/) to see the imported snapshots, then [`avc restore`](/agentic-vc/cli/restore/) to bring files onto disk.
+After importing, run [`avc list`](/cli/list/) to see the imported snapshots, then [`avc restore`](/cli/restore/) to bring files onto disk.

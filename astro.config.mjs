@@ -2,13 +2,11 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
-const SITE_URL = 'https://trevarix.github.io';
-const BASE_PATH = '/avc-docs';
+const SITE_URL = 'https://avc-docs.vercel.app';
 const REPO_URL = 'https://github.com/trevarix/avc-docs';
 
 export default defineConfig({
   site: SITE_URL,
-  base: BASE_PATH,
   integrations: [
     starlight({
       title: 'AVC',

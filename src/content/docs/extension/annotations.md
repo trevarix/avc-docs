@@ -1,11 +1,11 @@
----
+﻿---
 title: Inline Annotations
 description: See which snapshot introduced each line, like git blame.
 sidebar:
   order: 6
 ---
 
-Toggle inline gutter annotations to see which snapshot last touched each line of the active file — the editor equivalent of [`avc annotate`](/agentic-vc/cli/annotate/).
+Toggle inline gutter annotations to see which snapshot last touched each line of the active file — the editor equivalent of [`avc annotate`](/cli/annotate/).
 
 ## How to enable it
 

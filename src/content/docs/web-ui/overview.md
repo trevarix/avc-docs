@@ -1,4 +1,4 @@
----
+﻿---
 title: Overview
 description: The standalone web UI served by `avc ui`.
 sidebar:
@@ -53,5 +53,5 @@ If you bind with `--host 0.0.0.0`, **anyone on your LAN** can read, restore, and
 
 ## See also
 
-- [`avc ui` command reference](/agentic-vc/cli/ui/)
-- [REST API](/agentic-vc/web-ui/api/) — the HTTP endpoints behind the UI
+- [`avc ui` command reference](/cli/ui/)
+- [REST API](/web-ui/api/) — the HTTP endpoints behind the UI
