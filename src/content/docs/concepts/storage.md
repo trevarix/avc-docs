@@ -10,17 +10,21 @@ Everything AVC needs lives inside a single `.avc/` directory at the root of your
 ```
 .avc/
 ├── avc.db                  # SQLite — all metadata (no file bytes)
-├── config.toml             # Project config (active branch, default agent, etc.)
+├── config.toml             # Project config (active branch, protect, watch, run…)
 ├── .gitignore              # Tells Git to ignore the .avc/ directory
 ├── stat-cache.json         # mtime+size cache for fast incremental snapshots
-├── objects/                # Content-addressed file blobs
+├── watch.pid               # Present while `avc watch` is running (heartbeat lock)
+├── objects/                # Content-addressed file blobs (zstd-compressed)
 │   ├── ab/
 │   │   └── cdef0123...     # SHA256 hash, sharded by first 2 hex chars
 │   └── ff/
 │       └── 0011223344...
+├── trash/                  # Untracked files quarantined by `avc restore`
+│   └── <op-id>/            # recover with `avc trash restore`
+├── corrupt/                # Corrupt objects quarantined by `avc verify --repair`
 └── workspaces/             # Branch workspaces (only for non-main branches)
     ├── feat-auth/
-    │   ├── src/            # hardlinked from project root initially
+    │   ├── src/            # byte-for-byte copy of project root at branch time
     │   └── README.md
     └── feat-payments/
         └── ...
@@ -33,14 +37,17 @@ The database holds **no file bytes** — only hashes, sizes, and relational meta
 | Table | Purpose |
 |-------|---------|
 | `projects` | One row per AVC-initialized project (the project root path) |
-| `branches` | All branches with their base snapshot, active flag |
-| `snapshots` | Snapshot metadata: label, agent, timestamp, branch, file count, total size |
-| `files` | Per-snapshot file list: relative path, file hash, file size |
-| `diffs` | Cached diff results (regenerated if missing) |
+| `branches` | All branches with base snapshot, status, and parent (for stacked branches) |
+| `snapshots` | Snapshot metadata: label, agent, timestamp, branch, counts, plus `session_id` / `task` attribution |
+| `files` | Per-snapshot file list: relative path, file hash, size, and Unix mode bits |
+| `diffs` | Cached diff results + per-file change summaries (regenerated if missing) |
 | `merges` | One row per merge attempt: branch, target, pre-merge safety snapshot |
-| `merge_files` | Per-file decisions inside a merge: `clean` / `conflict` / `skip` |
+| `merge_files` | Per-file decisions inside a merge: `clean` / `merged` / `conflict` / `delete` / `skip` |
+| `operations` | The op log — every restore/merge/undo with the snapshot that reverses it (powers [`avc undo`](/cli/undo/)) |
+| `snapshot_tags` | Machine-readable milestone tags applied to snapshots |
+| `project_state` | The active branch name (authoritative; config.toml mirrors it) |
 
-The schema is migration-aware. Upgrading AVC may add columns or tables; data is preserved.
+The schema is migration-aware and versioned (`PRAGMA user_version`) so a fully-migrated database skips the migration on subsequent opens. Upgrading AVC may add columns or tables; data is preserved.
 
 ## Content-addressed object store
 
@@ -59,13 +66,20 @@ Example: if your `README.md` has SHA256 hash `abcd1234...ef`, it's stored at:
 
 A snapshot row references this hash. Multiple snapshots referencing the same hash share the single stored object.
 
+### On-disk object format
+
+Each object is one of two forms, detected by prefix on read:
+
+- **Compressed** — a 13-byte header (magic `AVCO`, a format byte, and the 8-byte raw size) followed by one zstd frame. Written only when compression actually saves space.
+- **Raw** — the exact original bytes, headerless. Content that doesn't compress, and every object written before compression existed, is this form.
+
+The two coexist with no migration. [`avc verify`](/cli/verify/) re-hashes every object to audit integrity; the hot read path deliberately does not (that would double read cost). [`avc storage`](/cli/storage/) reports compressed vs. raw bytes.
+
 ## Workspaces
 
 `main` operates on the real project root directly — no workspace. Every other branch gets a materialized workspace at `.avc/workspaces/<branch-name>/`.
 
-Workspaces are populated from the branch's base snapshot using **hardlinks** (sharing inodes with the real project root). When the agent modifies a file, the OS copies-on-write — the original inode in the project root is untouched.
-
-If hardlinks aren't available (cross-device, restricted permissions), AVC falls back to a regular file copy. The workspace still works; it just uses more disk space.
+Workspaces are populated from the branch's base snapshot with a **byte-for-byte file copy**. Hardlinks are deliberately *not* used: a hardlinked file shares its inode with the project-root original, so an ordinary in-place edit (an editor, `sed -i`, an append) would silently mutate the real project too. The copy keeps the workspace fully isolated — the whole point of a branch.
 
 ## Stat cache
 

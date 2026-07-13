@@ -45,6 +45,13 @@ avc run --branch feat-auth "pytest" --json
 
 In human-readable mode, stdout/stderr are streamed directly and the process exits with the command's own exit code.
 
+## The `[run] enabled` gate is agent-facing
+
+The CLI `avc run` is a **human-invoked** command and runs regardless of config — typing the command at a terminal is itself the authorization. The `[run] enabled = true` gate in `.avc/config.toml` exists to stop **agents** from executing commands autonomously:
+
+- It gates the `avc_run_in_workspace` MCP tool (disabled by default; a human must enable it).
+- [`avc bisect`](/cli/bisect/) and merge [`--validate`](/cli/merge/#merge-trains) run commands too, and enforce the same gate at the CLI.
+
 ## Agent usage
 
 This command backs the `avc_run_in_workspace` MCP tool. Per AVC's agent guidelines, agents must show the user the exact command and get approval before calling it — running arbitrary shell commands is consequential even when sandboxed. See [Agent Integration](/agents/) for details.

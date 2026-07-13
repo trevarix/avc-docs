@@ -25,6 +25,8 @@ avc snapshot "WIP" --json
 |------|-------------|
 | `--agent <name>` | Agent or user name creating the snapshot |
 | `--notes <text>` | Free-form notes attached to the snapshot |
+| `--session <id>` | Agent session this snapshot belongs to — [`avc timeline`](/cli/timeline/) groups by it |
+| `--task <text>` | One-line description of the session's overall task |
 | `--json` | JSON output |
 
 ## JSON output
@@ -39,9 +41,14 @@ avc snapshot "WIP" --json
   "total_size": 1048576,
   "notes": "Passed tests",
   "branch_id": "br-main",
+  "session_id": "sess-42",
+  "task": "add auth endpoints",
+  "summary": "2 files: modified auth.go (+40 -12), added auth_test.go",
   "success": true
 }
 ```
+
+`summary` is a heuristic one-liner describing what changed versus the previous snapshot on the branch (empty for a branch's first snapshot). Its per-file fragments are cached and reused by [`avc timeline`](/cli/timeline/).
 
 ## What gets included
 

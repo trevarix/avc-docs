@@ -49,10 +49,14 @@ Filters narrow the result set but do not widen branch scope — combine with `--
     "files_changed": 3,
     "total_size": 512000,
     "notes": "Security patch",
-    "branch_id": "br-main"
+    "branch_id": "br-main",
+    "session_id": "sess-42",
+    "task": "add auth endpoints"
   }
 ]
 ```
+
+`session_id` and `task` are populated when the snapshot was created with session attribution (`avc snapshot --session --task`). They power [`avc timeline`](/cli/timeline/).
 
 Returns an empty array `[]` if no snapshots exist.
 

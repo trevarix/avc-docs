@@ -6,7 +6,7 @@ description: Show AVC disk usage for the current project.
 Breaks down how much disk space AVC is using for the project:
 
 - **Database** — `.avc/avc.db`
-- **Objects** — `.avc/objects/` (content-addressed blobs)
+- **Objects** — `.avc/objects/` (content-addressed blobs, zstd-compressed where it saves space)
 - **Workspaces** — `.avc/workspaces/` (one directory per agent branch)
 
 ## Usage

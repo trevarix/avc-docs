@@ -14,8 +14,12 @@ A **snapshot** is AVC's atomic unit: a complete, content-addressed picture of yo
 | `timestamp` | int | Unix epoch when the snapshot was taken |
 | `agent_name` | string | Optional — which agent/user created it |
 | `notes` | string | Optional free-form notes |
-| `files` | list | Every tracked file with its SHA256 hash and size |
+| `session_id` | string | Optional — the agent session that produced it (groups the [timeline](/cli/timeline/)) |
+| `task` | string | Optional — one-line description of that session's task |
+| `files` | list | Every tracked file with its SHA256 hash, size, and mode bits |
 | `branch_id` | string | Which branch the snapshot belongs to |
+
+Session attribution lets [`avc timeline`](/cli/timeline/) tell the story of what each agent session did. Snapshots also carry a heuristic **change summary** (`"2 files: modified auth.go (+40 -12), added auth_test.go"`) computed against the previous snapshot.
 
 The snapshot does **not** contain file bytes directly — they live in the content-addressed object store and are referenced by hash. See [Storage Layout](/concepts/storage/) for the details.
 
@@ -71,15 +75,20 @@ You can edit `.avcignore` at any time. It's reread on every snapshot.
 | Action | Command |
 |--------|---------|
 | Create | `avc snapshot "label"` |
+| Create automatically as files change | `avc watch` |
 | List on active branch | `avc list` |
+| Review by session, as a story | `avc timeline` |
 | View metadata + file list | `avc info <id>` |
 | Print file contents from a snapshot | `avc cat <id> <path>` |
 | Diff against another snapshot | `avc diff <from> <to>` |
 | Diff against working tree | `avc diff-current <id>` |
 | Restore | `avc restore <id>` |
+| Reverse the last restore or merge | `avc undo` |
 | Restore one file | `avc restore-file <id> <path>` |
 | Delete | `avc delete <id>` |
 | Show every snapshot containing a file | `avc file-history <path>` |
 | Line-by-line attribution | `avc annotate <path>` |
+| Find the snapshot that broke a command | `avc bisect --good <id> --cmd "…"` |
+| Verify stored history is intact | `avc verify` |
 
 See the [CLI Reference](/cli/) for full details.

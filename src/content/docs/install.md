@@ -15,6 +15,15 @@ brew install trevarix/tap/avc
 
 ### Windows — Scoop
 
+Don't have [Scoop](https://scoop.sh) yet? Install it first, in PowerShell (no admin needed):
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Invoke-RestMethod get.scoop.sh | Invoke-Expression
+```
+
+Then add the AVC bucket and install:
+
 ```powershell
 scoop bucket add trevarix https://github.com/trevarix/scoop-bucket
 scoop install avc
@@ -117,7 +126,7 @@ To configure popular agent frameworks automatically:
 avc init --skills claude-code,cursor,windsurf
 ```
 
-This writes the right config files for each framework into your project. See [Agent Integration](/agents/) for details.
+For each framework this registers the MCP server in the framework's global config (in your home directory) and writes project-local instruction files. See [`avc init`](/cli/init/#with---skills) and [Agent Integration](/agents/) for details.
 
 ## Requirements
 

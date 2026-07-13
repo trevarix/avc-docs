@@ -24,36 +24,54 @@ For every file:
 
 | Modified on `main`? | Modified on branch? | Outcome |
 |:---:|:---:|---|
-| ❌ | ✅ | **Clean apply** — branch version overwrites `main` |
+| ❌ | ✅ | **Clean apply** — branch version applied to `main` |
 | ✅ | ❌ | **Skipped** — main's version stays |
 | ❌ | ❌ | **Untouched** — no change |
-| ✅ | ✅ | **Conflict** — both versions diverged since base |
+| ✅ | ✅ (different regions) | **Merged** — combined line by line |
+| ✅ | ✅ (overlapping lines) | **Conflict** — the diverging hunks are marked |
 
-Clean and skipped files apply automatically. Conflicts are surfaced to you.
+Clean, skipped, and cleanly-merged files apply automatically. Only genuinely overlapping edits surface as conflicts.
+
+## Line-level merge
+
+When both sides change the same file, AVC runs a **line-level three-way merge** (diff3), not a whole-file hash comparison. If the two sides touched different regions, both edits are combined automatically and the file merges cleanly. Only the regions that actually overlap become conflicts — and the markers wrap just those hunks, not the whole file.
+
+Edits on truly *adjacent* lines (with no unchanged line between them as a synchronization point) conflict rather than being guessed at — the same behavior as git/diff3.
 
 ## Conflict markers
 
-When AVC detects a conflict, it writes the file with standard conflict markers to your working tree:
+When AVC detects an overlapping conflict, it writes the file with diff3-style markers showing all three versions — main, the common base, and the branch — so you can see what each side changed from:
 
 ```
-<<<<<<< main
+<<<<<<< main (ours)
 the version from main
+||||||| base (common ancestor)
+the original version
 =======
 the version from the branch
->>>>>>> feat-auth
+>>>>>>> branch (theirs)
 ```
 
 You resolve the conflict by editing the file (just like Git), then take a new snapshot to mark the resolution.
 
+## Protected paths
+
+Teams can declare paths agents may not integrate — CI config, secrets, build files — under `[protect]` in `.avc/config.toml`. A merge that would change a protected path is refused mechanically in `block` mode (or flagged in `warn` mode), **before anything is written**. Only a human running `avc merge <branch> --allow-protected` can override it; the MCP merge tool has no such escape hatch. See [`avc merge` → Protected paths](/cli/merge/#protected-paths).
+
+## Merge trains
+
+Several branches can be integrated in one pass with `avc merge --train a b c`. Each branch is merged against the *current* `main`, so every merge sees the ones before it. The train stops at the first conflict or protected-path block, keeping the completed merges (each reversible via `avc undo`). An optional `--validate "<command>"` runs after each merge and rolls that merge back if it fails. See [`avc merge` → Merge trains](/cli/merge/#merge-trains).
+
 ## Always reversible
 
-Before every merge, AVC takes an automatic snapshot of `main` labelled `Pre-merge safety snapshot`. If the merge goes wrong — wrong files applied, conflicts you don't want to deal with, anything — undo it with:
+Before every merge, AVC takes an automatic snapshot of `main` (labelled `pre-merge: before merging branch '<name>'`). If the merge goes wrong — wrong files applied, conflicts you don't want to deal with, anything — undo it two ways:
 
 ```bash
-avc merge --abort
+avc merge --abort     # roll back an in-progress or just-completed merge
+avc undo              # reverse the last completed merge (also reactivates the branch)
 ```
 
-This restores `main` from the pre-merge snapshot. The agent branch is untouched.
+Both restore `main` from the pre-merge snapshot. `avc undo` additionally marks the merged branch `active` again and rebuilds its workspace, so you can resume it.
 
 ## Commands
 

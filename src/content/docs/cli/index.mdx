@@ -41,16 +41,25 @@ Errors are written to `stderr`; the process exits with code `1` on failure.
   <LinkCard title="avc diff-current" href="/cli/diff-current/" description="Compare a snapshot against the working tree." />
   <LinkCard title="avc restore" href="/cli/restore/" description="Roll back the entire project to a snapshot." />
   <LinkCard title="avc restore-file" href="/cli/restore-file/" description="Restore a single file from a snapshot." />
+  <LinkCard title="avc undo" href="/cli/undo/" description="Reverse the last restore or merge, zero arguments." />
   <LinkCard title="avc cat" href="/cli/cat/" description="Print file contents from a snapshot to stdout." />
   <LinkCard title="avc file-history" href="/cli/file-history/" description="List every snapshot that contains a specific file." />
   <LinkCard title="avc annotate" href="/cli/annotate/" description="Show which snapshot introduced each line." />
 </CardGrid>
 
+## Continuous safety & history
+
+<CardGrid>
+  <LinkCard title="avc watch" href="/cli/watch/" description="Continuously checkpoint the project as files change." />
+  <LinkCard title="avc timeline" href="/cli/timeline/" description="Branch history grouped by agent session." />
+  <LinkCard title="avc bisect" href="/cli/bisect/" description="Find the snapshot that broke a command, O(log n)." />
+</CardGrid>
+
 ## Branches & merge
 
 <CardGrid>
-  <LinkCard title="avc branch" href="/cli/branch/" description="Create, list, switch, delete, and diff branches." />
-  <LinkCard title="avc merge" href="/cli/merge/" description="Three-way merge with conflict detection and abort." />
+  <LinkCard title="avc branch" href="/cli/branch/" description="Create, stack, list, switch, delete, and diff branches." />
+  <LinkCard title="avc merge" href="/cli/merge/" description="Line-level three-way merge, protected paths, and merge trains." />
 </CardGrid>
 
 ## Agents & UI
@@ -65,6 +74,8 @@ Errors are written to `stderr`; the process exits with code `1` on failure.
 
 <CardGrid>
   <LinkCard title="avc status" href="/cli/status/" description="Show files changed since the last snapshot." />
+  <LinkCard title="avc verify" href="/cli/verify/" description="Audit stored history for corruption." />
+  <LinkCard title="avc trash" href="/cli/trash/" description="Recover files quarantined by a restore." />
   <LinkCard title="avc gc" href="/cli/gc/" description="Garbage-collect unreferenced objects from the object store." />
   <LinkCard title="avc storage" href="/cli/storage/" description="Show AVC disk usage for the current project." />
   <LinkCard title="avc cache" href="/cli/cache/" description="Manage the diff result cache." />

@@ -15,9 +15,17 @@ All settings live under `avc.*`. Edit them in the VSCode settings UI (`Ctrl+,`) 
 | `avc.projectPath` | `""` | Override the project root. Defaults to the first workspace folder. |
 | `avc.defaultAgentName` | `""` | Auto-fills the agent name when creating a snapshot. Useful if you always want the same identifier (e.g. your name or `"manual"`). |
 
+## Continuous checkpointing
+
+| Setting | Default | Description |
+|---------|---------|-------------|
+| `avc.watch.enabled` | `false` | Run the [`avc watch`](/cli/watch/) daemon alongside the editor — continuously checkpoints the project as files change, including edits made outside VSCode. Starts and stops with the editor. |
+
+When `avc.watch.enabled` is on it **supersedes** the save-triggered auto-snapshot below: the CLI watcher sees every change (not just editor saves), debounces, and dedupes against the branch HEAD. Tune its debounce and interval under `[watch]` in `.avc/config.toml` — see [`avc watch`](/cli/watch/#configuration).
+
 ## Auto-snapshot settings
 
-The extension can automatically create snapshots after you save files. Disabled by default.
+The extension can automatically create snapshots after you save files. Disabled by default, and ignored while `avc.watch.enabled` is on.
 
 | Setting | Default | Description |
 |---------|---------|-------------|
@@ -31,9 +39,7 @@ The extension can automatically create snapshots after you save files. Disabled 
 {
   "avc.cliPath": "avc",
   "avc.defaultAgentName": "manual",
-  "avc.autoSnapshot.enabled": true,
-  "avc.autoSnapshot.debounceSeconds": 60,
-  "avc.autoSnapshot.cooldownMinutes": 10
+  "avc.watch.enabled": true
 }
 ```
 

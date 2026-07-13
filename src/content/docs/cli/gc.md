@@ -20,6 +20,7 @@ avc gc --json
 | Flag | Description |
 |------|-------------|
 | `--run` | Actually delete unreferenced objects (default is dry-run) |
+| `--grace <duration>` | Skip objects newer than this age (default `15m`) so an in-flight snapshot is never collected |
 | `--json` | JSON output |
 
 ## JSON output
@@ -29,9 +30,12 @@ avc gc --json
   "scanned_objects": 1204,
   "deleted_objects": 37,
   "bytes_reclaimed": 4423680,
+  "skipped_recent": 2,
   "dry_run": true
 }
 ```
+
+`skipped_recent` counts objects spared by the grace period — objects written more recently than `--grace` are never deleted, so a snapshot in progress on another process can't have its just-written blobs collected out from under it.
 
 ## Typical workflow
 

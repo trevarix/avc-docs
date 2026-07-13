@@ -36,3 +36,7 @@ avc restore-file snap-abc123 src/auth.go --json
 - Other files in the project are not touched
 - If the file isn't in the snapshot, you get a 404-style error and no file is written
 - Useful for restoring a single config or one buggy file without rolling back everything else
+
+## Where it writes
+
+The CLI `avc restore-file` writes to the **project root**, even when a branch is active. The workspace-aware behavior — writing into the active branch's workspace instead — is the MCP `avc_restore_file` tool (and the web UI). If you want to restore a single file into a branch workspace from the command line, run the command from inside that workspace directory, or use the agent tool.

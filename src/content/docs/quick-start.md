@@ -92,7 +92,11 @@ avc restore snap-a1b2c3d4
 ```
 
 :::caution
-Restore overwrites current files. AVC auto-creates a "Pre-restore safety snapshot" before doing this, so you can undo the undo by restoring *that* snapshot.
+Restore overwrites current files. AVC captures the pre-restore state automatically first, so if the restore itself was a mistake you can reverse it with a single command:
+
+```bash
+avc undo
+```
 :::
 
 ## What's next?
@@ -101,6 +105,10 @@ You now know the core loop. From here:
 
 - **List all snapshots** → `avc list`
 - **See snapshot details + file tree** → `avc info snap-a1b2c3d4`
+- **Reverse the last restore or merge** → [`avc undo`](/cli/undo/)
+- **Checkpoint continuously as you work** → [`avc watch`](/cli/watch/)
+- **Review what your agents did, by session** → [`avc timeline`](/cli/timeline/)
+- **Find the snapshot that broke a test** → [`avc bisect`](/cli/bisect/)
 - **Open a graphical browser** → `avc ui` then visit `http://localhost:3004/`
 - **Use branches for parallel agent runs** → see [Concepts → Branches](/concepts/branches/)
 - **Browse from VSCode** → install the [VSCode Extension](/extension/)

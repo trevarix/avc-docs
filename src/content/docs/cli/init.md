@@ -62,13 +62,15 @@ Re-running on an already-initialized project is a no-op — no data loss.
 
 ## With `--skills`
 
-For each requested framework, AVC writes the right files:
+For each requested framework, AVC writes two kinds of file: the **MCP server config** (so the framework knows how to launch `avc mcp serve`) and project-local **instruction files** (so the agent knows when to use each tool).
 
-| Framework | Files written |
-|-----------|--------------|
-| `claude-code` | `.claude/settings.json` (MCP config), `.claude/skills/avc-*/SKILL.md` (skill files) |
-| `cursor` | `.cursor/mcp.json`, `.cursor/rules/avc.mdc` |
-| `windsurf` | `.codeium/windsurf/mcp_config.json`, appends to `.windsurfrules` |
-| `generic` | `AGENT_INSTRUCTIONS.md` |
+The MCP config lives in your **home directory** — where these editors keep their global MCP registry — not in the project. Only the instruction files are project-local:
 
-These tell the agent framework how to invoke AVC's MCP server and when to use each tool. See [Agent Integration](/agents/) for details.
+| Framework | MCP config (in `$HOME`) | Instruction files (in the project) |
+|-----------|-------------------------|------------------------------------|
+| `claude-code` | `~/.claude.json` | `CLAUDE.md`, `.claude/skills/avc-*/SKILL.md` |
+| `cursor` | `~/.cursor/mcp.json` | `.cursor/rules/avc.mdc` |
+| `windsurf` | `~/.codeium/windsurf/mcp_config.json` | `.windsurfrules` |
+| `generic` | — | `AGENT_INSTRUCTIONS.md` |
+
+Re-running `--skills` is safe: existing files are never overwritten, the JSON config is **merged** (not duplicated), and rules files are append-only with a dedup marker. If a target directory is gitignored, AVC warns you so you know the files won't be committed. See [Agent Integration](/agents/) for details.
