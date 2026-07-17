@@ -2,7 +2,7 @@
   "name": "docs",
   "type": "module",
   "version": "0.0.1",
-  "homepage": "https://skillmythorg.github.io/agentic-vc/",
+  "homepage": "https://avc.trevarix.com",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

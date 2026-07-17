@@ -1,13 +1,13 @@
 # AVC Documentation Site
 
-The public documentation site for AVC, built with [Astro Starlight](https://starlight.astro.build).
-Lives at **https://trevarix.github.io/avc-docs/**.
+The public documentation site for Agentic Version Control (AVC), built with [Astro Starlight](https://starlight.astro.build).
+Lives at **https://avc.trevarix.com**.
 
 ## Local development
 
 ```bash
 npm install                # one-time setup
-npm run dev                # http://localhost:4321/avc-docs/
+npm run dev                # http://localhost:4321/
 npm run build              # production build → dist/
 npm run preview            # serve the production build locally
 ```
@@ -16,7 +16,7 @@ npm run preview            # serve the production build locally
 
 ```
 avc-docs/
-├── astro.config.mjs           # Starlight config (sidebar, base path, edit links)
+├── astro.config.mjs           # Starlight config (sidebar, logo, edit links)
 ├── src/
 │   ├── assets/
 │   │   └── logo.svg           # Brand mark used in the top bar
@@ -45,11 +45,9 @@ Each page accepts a `sidebar: { order: N }` frontmatter field to control its pos
 
 ## Deployment
 
-Pushing to `main` triggers the
-[Deploy Docs](.github/workflows/docs.yml) GitHub Action, which builds the site
-and publishes it to GitHub Pages.
-
-You can also trigger a deploy manually from the **Actions** tab.
+Deployed on [Vercel](https://vercel.com) at the custom domain `avc.trevarix.com`
+(served at the root, no `base` path). Pushing to `main` triggers a production
+deploy automatically.
 
 ## Editing pages
 

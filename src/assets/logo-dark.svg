@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="140" height="40" viewBox="0 0 336 96"><polygon points="16,16 8,32 78,44.2 78,39.6" fill="#111111"></polygon><polygon points="16,40 8,56 90,48.9 90,47" fill="#C0C0C0"></polygon><polygon points="16,64 8,80 78,55.7 78,52.2" fill="#111111"></polygon>
-  <g fill="none" stroke="#111111" stroke-width="8" stroke-linejoin="miter">
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="40" viewBox="0 0 336 96"><polygon points="16,16 8,32 78,44.2 78,39.6" fill="#FAFAFA"></polygon><polygon points="16,40 8,56 90,48.9 90,47" fill="#C0C0C0"></polygon><polygon points="16,64 8,80 78,55.7 78,52.2" fill="#FAFAFA"></polygon>
+  <g fill="none" stroke="#FAFAFA" stroke-width="8" stroke-linejoin="miter">
     <g transform="translate(132,0)"><path d="M2 70 L20 26 L38 70"></path><path d="M9 54 H31"></path></g>
     <g transform="translate(196,0)"><path d="M2 26 L20 70 L38 26"></path></g>
     <g transform="translate(260,0)"><path d="M37.6 32.4 A22 22 0 1 0 37.6 63.6"></path></g>
   </g>
-  <g fill="none" stroke="#111111" stroke-width="2.6">
+  <g fill="none" stroke="#FAFAFA" stroke-width="2.6">
     <path d="M306 27 H316 M311 27 V37"></path><path d="M320 37 V27 L324.5 32 L329 27 V37"></path>
   </g>
   <g font-family="&#39;Archivo&#39;,&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif" font-size="8.5" font-weight="600" letter-spacing="1" fill="#C0C0C0">
