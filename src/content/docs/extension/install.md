@@ -13,23 +13,17 @@ The AVC extension brings snapshot management directly into VSCode — sidebar, S
 - Your project must be initialized with `avc init`
 - VSCode **1.85+**
 
-## Option A — Marketplace
+The extension isn't on the VSCode Marketplace yet — install from a `.vsix` or run it in development mode.
 
-The simplest install once published:
+## Option A — VSIX
 
-1. Open VSCode and press `Ctrl+Shift+X` (or `Cmd+Shift+X`) to open the Extensions panel
-2. Search for **AVC — Agentic Version Control**
-3. Click **Install**, then reload VSCode if prompted
+Install a packaged build:
 
-## Option B — Local VSIX
-
-Useful for testing pre-release builds:
-
-1. Run `vsce package` in the `extension/` folder to produce `avc-0.2.0.vsix`
+1. Download the latest `.vsix` from [GitHub Releases](https://github.com/trevarix/releases), or run `vsce package` in the `extension/` folder to produce one yourself
 2. In VSCode: `Ctrl+Shift+P` → **Extensions: Install from VSIX…**
-3. Pick the generated `.vsix` file
+3. Pick the `.vsix` file
 
-## Option C — Development mode
+## Option B — Development mode
 
 For contributing to the extension itself:
 
