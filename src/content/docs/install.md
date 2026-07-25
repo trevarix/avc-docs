@@ -34,15 +34,15 @@ scoop install avc
 There's no install script — grab the release tarball and move the binary onto your `PATH`:
 
 ```bash
-curl -sfL https://github.com/trevarix/releases/latest/download/avc_<version>_linux_amd64.tar.gz | tar xz
+curl -sfL https://github.com/trevarix/agentic-vc/releases/latest/download/avc_<version>_linux_amd64.tar.gz | tar xz
 sudo mv avc /usr/local/bin/
 ```
 
-Replace `<version>` with the release version (e.g. `1.0.0`), matching the asset names on the [Releases page](https://github.com/trevarix/releases).
+Replace `<version>` with the release version (e.g. `1.0.0`), matching the asset names on the [Releases page](https://github.com/trevarix/agentic-vc/releases).
 
 ### macOS / Windows — direct download (without a package manager)
 
-Download the archive for your OS/arch from [GitHub Releases](https://github.com/trevarix/releases), then:
+Download the archive for your OS/arch from [GitHub Releases](https://github.com/trevarix/agentic-vc/releases), then:
 
 ```bash
 # macOS — remove the Gatekeeper quarantine flag
@@ -88,7 +88,7 @@ The extension calls the `avc` CLI under the hood, so install the CLI first.
 
 ### From a VSIX
 
-1. Download the latest `.vsix` from [GitHub Releases](https://github.com/trevarix/releases)
+1. Download the latest `.vsix` from [GitHub Releases](https://github.com/trevarix/agentic-vc/releases)
 2. In VSCode: `Ctrl+Shift+P` → **Extensions: Install from VSIX…**
 3. Pick the downloaded file
 
