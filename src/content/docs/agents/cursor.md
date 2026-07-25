@@ -22,20 +22,20 @@ avc init --skills cursor
     └── avc.mdc           ← Instructions on when to use AVC tools
 ```
 
-The `mcp.json`:
+The project-level `.cursor/mcp.json` keeps the AVC server scoped to this project rather than registered for every project you open in Cursor:
 
 ```json
 {
   "mcpServers": {
     "avc": {
       "command": "avc",
-      "args": ["mcp", "serve", "--compact"]
+      "args": ["mcp", "serve", "--tools", "standard"]
     }
   }
 }
 ```
 
-The `avc.mdc` rules file instructs Cursor on the AVC workflow — branching for non-trivial work, snapshotting before risky changes, etc.
+Both generated files are added to `.gitignore` automatically. The `avc.mdc` rules file instructs Cursor on the AVC workflow — branching for non-trivial work, snapshotting before risky changes, etc.
 
 ## Workflow
 
@@ -67,4 +67,4 @@ If integration is working, Cursor will list 14 tools starting with `avc_`. If no
 avc init --skills cursor
 ```
 
-Rewrites `.cursor/mcp.json` and `.cursor/rules/avc.mdc`. Existing rules files for other tools are left alone.
+Merges the AVC entry into `.cursor/mcp.json` and leaves an existing `.cursor/rules/avc.mdc` and other tools' config alone.

@@ -44,11 +44,15 @@ avc snapshot "WIP" --json
   "session_id": "sess-42",
   "task": "add auth endpoints",
   "summary": "2 files: modified auth.go (+40 -12), added auth_test.go",
+  "new_files": 1,
+  "carried_files": 0,
   "success": true
 }
 ```
 
 `summary` is a heuristic one-liner describing what changed versus the previous snapshot on the branch (empty for a branch's first snapshot). Its per-file fragments are cached and reused by [`avc timeline`](/cli/timeline/).
+
+`new_files` is how many tracked files are new since the previous snapshot (every file when there's no baseline). Watch it for unexpected spikes — for example, a test run that wrote output files into the workspace. `carried_files` counts previously-tracked files that now match an ignore rule but were kept because they still exist on disk (see [ignoring never untracks](/concepts/snapshots/#ignoring-never-untracks)); a stderr note explains how to actually stop tracking them.
 
 ## What gets included
 

@@ -26,18 +26,20 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
   </div>
 
 ```bash
-$ avc init
-Initialized AVC in /Users/you/my-project
+$ avc init --skills claude-code      # wire AVC into your coding agent
+✓ MCP server + agent skills configured
 
-$ avc snapshot "Baseline"
-Snapshot snap-a1b2c3 created (42 files, 1.2 MB)
+# The agent now versions its own work as it goes, in an isolated
+# workspace — your main project is never touched directly:
+#   → avc_branch_create  feat/auth
+#   → avc_snapshot       "add bcrypt hashing"
+#   → avc_snapshot       "fix failing test"
 
-# …let claude work…
-$ avc snapshot "After agent run" --agent claude
-Snapshot snap-d4e5f6 created (5 files changed, +127 -32)
+$ avc branch diff feat/auth          # review everything the agent did
+  3 files changed  (+127 -32)
 
-$ avc diff snap-a1b2c3 snap-d4e5f6   # see what changed
-$ avc restore snap-a1b2c3              # instant rollback
+$ avc merge feat/auth                # ship it — or `avc restore` to roll back
+✓ Merged feat/auth into main
 ```
 
 </div>

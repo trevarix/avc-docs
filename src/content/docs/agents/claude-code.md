@@ -18,27 +18,31 @@ That single command writes everything needed.
 ## What gets written
 
 ```
+.mcp.json                               ← MCP server registration (project-scoped)
+CLAUDE.md                               ← always-loaded project instructions (AVC block appended)
 .claude/
-├── settings.json                       ← MCP server registration
 └── skills/
     ├── avc-snapshot/SKILL.md           ← "When and how to snapshot"
     ├── avc-branch/SKILL.md             ← "When to use branches"
     ├── avc-restore/SKILL.md            ← "When to roll back"
-    └── avc-merge/SKILL.md              ← "How to merge an agent branch"
+    ├── avc-merge/SKILL.md              ← "How to merge an agent branch"
+    └── avc-run/SKILL.md                ← "How to run commands in a workspace"
 ```
 
-The `settings.json` registers the AVC MCP server:
+The project-level `.mcp.json` registers the AVC MCP server, and Claude Code discovers it automatically when you open the project:
 
 ```json
 {
   "mcpServers": {
     "avc": {
       "command": "avc",
-      "args": ["mcp", "serve", "--compact"]
+      "args": ["mcp", "serve", "--tools", "standard"]
     }
   }
 }
 ```
+
+Writing `.mcp.json` in the project (rather than your global `~/.claude.json`) keeps the AVC server scoped to this project, and Claude Code gates first use behind its normal project-server approval prompt. All of these generated files are added to `.gitignore` automatically.
 
 The skill files are prompt instructions Claude reads when it loads the project. They explain the four primitives and when to use each tool.
 
@@ -71,12 +75,13 @@ If you update AVC and want the latest skill files:
 avc init --skills claude-code
 ```
 
-This is idempotent — it overwrites `.claude/settings.json` and the AVC skill files but leaves your other skills alone.
+This is idempotent — it merges the AVC entry into `.mcp.json` and leaves existing skill files and your other tools' config untouched.
 
 ## Troubleshooting
 
 | Symptom | Fix |
 |---------|-----|
-| Claude says "tool avc_snapshot not found" | Restart Claude Code so it re-reads `.claude/settings.json` |
-| `avc: command not found` in the MCP error | Set the full path in `settings.json`: `"command": "/usr/local/bin/avc"` |
+| Claude says "tool avc_snapshot not found" | Restart Claude Code so it re-reads `.mcp.json`, and approve the AVC server if prompted |
+| AVC server stuck "pending approval" | Run `claude` interactively and approve it, or set `enableAllProjectMcpServers: true` in your `.claude/settings.json` |
+| `avc: command not found` in the MCP error | Set the full path in `.mcp.json`: `"command": "/usr/local/bin/avc"` |
 | Skills not being followed | Confirm `.claude/skills/avc-*/SKILL.md` files exist; rerun `avc init --skills claude-code` |

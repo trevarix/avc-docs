@@ -9,6 +9,10 @@ This guide walks you through AVC's core loop: initialize a project, take a basel
 Install the AVC CLI first — see the [Installation guide](/install/). Verify with `avc --version`.
 :::
 
+:::note[Your agent can run this whole loop itself]
+Every step below maps to an MCP tool — `avc_snapshot`, `avc_diff`, `avc_restore`, `avc_branch_create`, `avc_merge`, and the rest. Once you've run `avc init --skills <framework>`, an AI agent calls these tools directly, so it can snapshot before risky changes, branch into an isolated workspace, and roll back on its own — you review and merge. This page uses the CLI so you can follow along by hand; the workflow is identical when an agent drives it. See [Agent Integration](/agents/).
+:::
+
 ## 1. Initialize a project
 
 Pick any project directory:

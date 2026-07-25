@@ -55,3 +55,5 @@ The CLI `avc run` is a **human-invoked** command and runs regardless of config �
 ## Agent usage
 
 This command backs the `avc_run_in_workspace` MCP tool. Per AVC's agent guidelines, agents must show the user the exact command and get approval before calling it — running arbitrary shell commands is consequential even when sandboxed. See [Agent Integration](/agents/) for details.
+
+The MCP tool additionally returns `files_created` — files the command wrote that are not yet ignored and would enter the next snapshot. This lets an agent add build or test artifacts to the workspace `.avcignore` **before** snapshotting, so they never pollute the branch (ignoring them afterward won't remove them — see [ignoring never untracks](/concepts/snapshots/#ignoring-never-untracks)).
