@@ -86,17 +86,13 @@ The extension provides a sidebar, Source Control panel integration, and file his
 The extension calls the `avc` CLI under the hood, so install the CLI first.
 :::
 
-### From the Marketplace
-
-1. Open VSCode → Extensions (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-2. Search for **AVC — Agentic Version Control**
-3. Click **Install**
-
 ### From a VSIX
 
 1. Download the latest `.vsix` from [GitHub Releases](https://github.com/trevarix/releases)
 2. In VSCode: `Ctrl+Shift+P` → **Extensions: Install from VSIX…**
 3. Pick the downloaded file
+
+The extension isn't on the VSCode Marketplace yet — install from the `.vsix` for now.
 
 See the [VSCode Extension guide](/extension/) for a tour of the features.
 
