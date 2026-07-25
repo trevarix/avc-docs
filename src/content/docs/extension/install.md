@@ -19,7 +19,7 @@ The extension isn't on the VSCode Marketplace yet — install from a `.vsix` or 
 
 Install a packaged build:
 
-1. Download the latest `.vsix` from [GitHub Releases](https://github.com/trevarix/releases), or run `vsce package` in the `extension/` folder to produce one yourself
+1. Download the latest `.vsix` from [GitHub Releases](https://github.com/trevarix/agentic-vc/releases), or run `vsce package` in the `extension/` folder to produce one yourself
 2. In VSCode: `Ctrl+Shift+P` → **Extensions: Install from VSIX…**
 3. Pick the `.vsix` file
 
