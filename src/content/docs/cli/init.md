@@ -5,6 +5,8 @@ description: Initialize AVC for a project.
 
 Initialize AVC for a project. Creates `.avc/` with a SQLite database, default config, and `.avcignore`.
 
+If the project is inside a git repository and has no `.gitignore` yet, AVC creates one with its entries; if a `.gitignore` already exists, AVC appends `.avc/` and `.avcignore` to it.
+
 ## Usage
 
 ```bash
@@ -62,15 +64,17 @@ Re-running on an already-initialized project is a no-op — no data loss.
 
 ## With `--skills`
 
-For each requested framework, AVC writes two kinds of file: the **MCP server config** (so the framework knows how to launch `avc mcp serve`) and project-local **instruction files** (so the agent knows when to use each tool).
+For each requested framework, AVC writes two kinds of file: the **MCP server config** (so the framework knows how to launch `avc mcp serve`) and **instruction files** (so the agent knows when to use each tool).
 
-The MCP config lives in your **home directory** — where these editors keep their global MCP registry — not in the project. Only the instruction files are project-local:
+Where the framework supports it, the MCP config is written **in the project**, so the AVC server is scoped to that project rather than registered globally for every project on your machine. Frameworks without a project-level config option fall back to their home-directory config:
 
-| Framework | MCP config (in `$HOME`) | Instruction files (in the project) |
-|-----------|-------------------------|------------------------------------|
-| `claude-code` | `~/.claude.json` | `CLAUDE.md`, `.claude/skills/avc-*/SKILL.md` |
-| `cursor` | `~/.cursor/mcp.json` | `.cursor/rules/avc.mdc` |
-| `windsurf` | `~/.codeium/windsurf/mcp_config.json` | `.windsurfrules` |
+| Framework | MCP config | Instruction files (in the project) |
+|-----------|------------|------------------------------------|
+| `claude-code` | `.mcp.json` (project) | `CLAUDE.md`, `.claude/skills/avc-*/SKILL.md` |
+| `cursor` | `.cursor/mcp.json` (project) | `.cursor/rules/avc.mdc` |
+| `windsurf` | `~/.codeium/windsurf/mcp_config.json` (home) | `.windsurfrules` |
 | `generic` | — | `AGENT_INSTRUCTIONS.md` |
 
-Re-running `--skills` is safe: existing files are never overwritten, the JSON config is **merged** (not duplicated), and rules files are append-only with a dedup marker. If a target directory is gitignored, AVC warns you so you know the files won't be committed. See [Agent Integration](/agents/) for details.
+Every file AVC creates is added to `.gitignore` automatically — generated agent files are local tooling, not repo content. Files you already own are left as-is: if a `CLAUDE.md` or MCP config already exists, AVC appends to (or merges into) it and does **not** gitignore it, so your tracking choice stands. To share an AVC-generated config, remove its entry from `.gitignore` and commit it.
+
+Re-running `--skills` is safe: existing files are never overwritten, the JSON config is **merged** (not duplicated), and rules files are append-only with a dedup marker. See [Agent Integration](/agents/) for details.

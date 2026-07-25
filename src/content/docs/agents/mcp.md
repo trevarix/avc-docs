@@ -35,7 +35,7 @@ Tools are exposed in three tiers (`--tools core|standard|full`) so agents with s
 | `avc_branch_create` | standard | [`avc branch create`](/cli/branch/) — `from_branch` to stack |
 | `avc_branch_list` | standard | [`avc branch list`](/cli/branch/) |
 | `avc_branch_switch` | standard | [`avc branch switch`](/cli/branch/) |
-| `avc_branch_diff` | standard | [`avc branch diff`](/cli/branch/) — `against` for cross-branch |
+| `avc_branch_diff` | standard | [`avc branch diff`](/cli/branch/) — `against` for cross-branch, `stat` for a compact summary |
 | `avc_merge` | standard | [`avc merge`](/cli/merge/) |
 | `avc_merge_abort` | standard | [`avc merge --abort`](/cli/merge/) |
 | `avc_info` | full | [`avc info`](/cli/info/) |
@@ -45,7 +45,7 @@ Tools are exposed in three tiers (`--tools core|standard|full`) so agents with s
 | `avc_branch_prune_merged` | full | [`avc branch prune --merged`](/cli/branch/) |
 | `avc_merge_preview` | full | [`avc merge --preview`](/cli/merge/) |
 | `avc_merge_train` | full | [`avc merge --train`](/cli/merge/) — merge a fleet in sequence |
-| `avc_run_in_workspace` | full | Run a shell command inside a branch workspace (gated — see below) |
+| `avc_run_in_workspace` | full | Run a shell command inside a branch workspace; reports `files_created` (gated — see below) |
 | `avc_bisect` | full | [`avc bisect`](/cli/bisect/) (gated — see below) |
 | `avc_restore_file` | full | [`avc restore-file`](/cli/restore-file/) — workspace-aware |
 | `avc_annotate` | full | [`avc annotate`](/cli/annotate/) |
@@ -53,6 +53,12 @@ Tools are exposed in three tiers (`--tools core|standard|full`) so agents with s
 | `avc_list_conflicts` / `avc_resolve_conflict` | full | Inspect and resolve merge conflicts |
 
 Each tool's JSON Schema is published via `tools/list` so the agent can discover them programmatically.
+
+### Agent-friendly behaviors
+
+- **`avc_branch_diff` never overflows the result limit.** A full diff of a large branch can be several MB — too big for a single tool result. When that happens the tool automatically falls back to a per-file summary (and truncates it if the branch changed a huge number of files), always noting what it did. Pass `stat: true` to request that compact summary directly.
+- **`avc_run_in_workspace` reports what a command created.** The response includes `files_created` / `files_created_count`: files the command wrote that are not yet ignored and would enter the next snapshot. If they are build or test artifacts, add their directory to the workspace `.avcignore` **before** calling `avc_snapshot` — ignoring them afterward won't remove them (ignoring never untracks a file that's already tracked).
+- **`avc_snapshot` reports `new_files` and `carried_files`** so an unexpected spike in tracked files — like a flood of test output — is visible immediately.
 
 ## The `[run] enabled` gate
 
@@ -83,13 +89,13 @@ For custom agents not covered by `--skills`, here's the minimal config snippet:
   "mcpServers": {
     "avc": {
       "command": "avc",
-      "args": ["mcp", "serve", "--compact"]
+      "args": ["mcp", "serve", "--tools", "standard"]
     }
   }
 }
 ```
 
-Drop that into whatever MCP config file your framework uses. Most frameworks (Claude Desktop, Cline, etc.) follow this convention.
+Drop that into whatever MCP config file your framework uses. Most frameworks (Claude Desktop, Cline, etc.) follow this convention. For frameworks with a per-project config, prefer the project-local file so the AVC server stays scoped to the project.
 
 ## When the agent should use each tool
 

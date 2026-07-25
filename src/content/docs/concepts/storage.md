@@ -129,11 +129,11 @@ The active branch is updated by `avc branch switch`. Everything else is optional
 
 - `.avcignore` at the project root — patterns excluded from snapshots (`.gitignore` syntax)
 - Agent integration files (only if you run `avc init --skills <framework>`):
-  - `.claude/settings.json`, `.claude/skills/avc-*/SKILL.md`
-  - `.cursor/mcp.json`, `.cursor/rules/avc.mdc`
-  - `.codeium/windsurf/mcp_config.json`, `.windsurfrules`
+  - `.mcp.json`, `CLAUDE.md`, `.claude/skills/avc-*/SKILL.md` (Claude Code)
+  - `.cursor/mcp.json`, `.cursor/rules/avc.mdc` (Cursor)
+  - `~/.codeium/windsurf/mcp_config.json`, `.windsurfrules` (Windsurf — MCP config in your home directory)
 
-These are deliberately outside `.avc/` because they're configuration the agent framework reads, not AVC's own state.
+These are deliberately outside `.avc/` because they're configuration the agent framework reads, not AVC's own state. Where the framework supports it, the MCP config is written in the project (rather than a global home-directory registry) so the AVC server is scoped to that project. AVC adds every file it creates to `.gitignore`.
 
 ## Backup strategy
 

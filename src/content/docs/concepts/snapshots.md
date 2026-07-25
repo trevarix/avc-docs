@@ -63,6 +63,22 @@ Two layers of filtering:
 
 You can edit `.avcignore` at any time. It's reread on every snapshot.
 
+### Ignoring never untracks
+
+As in `git`, adding a pattern to `.avcignore` does **not** stop tracking files that are already tracked and still present on disk — it only keeps *new* files from being picked up. If you ignore a directory whose files are already in snapshots, those files stay tracked (their current content is captured on each snapshot), and the snapshot reports them under `carried_files`. To actually stop tracking a file, delete it from the working tree.
+
+This matters most on a branch: adding a path to `.avcignore` mid-task would otherwise look like a mass deletion, and merging the branch would delete those files from your project. AVC prevents that.
+
+If you're unsure why a file is or isn't captured, use [`avc check-ignore <path>`](/cli/check-ignore/) — it names the exact rule responsible.
+
+### Default patterns are scoped carefully
+
+Default ignore patterns for language dependency folders are anchored where the convention is strict. For example the Go module folder is `/vendor/` (project root only), not a bare `vendor/`, so a first-party source directory named `vendor` at any other depth is never silently excluded.
+
+### On branches: root rules layer under the workspace's
+
+A branch workspace has its own `.avcignore`. At snapshot time AVC reads the project-root `.avcignore` fresh and layers the workspace's on top, so an edit to the root file takes effect on active branches immediately while workspace-specific patterns still apply. Layering is additive: to *relax* a pattern already present in the workspace copy, update the workspace `.avcignore` too, not only the root.
+
 ## What snapshots are not
 
 - **Not** Git commits — there's no commit graph, no parent pointers (yet), no signing

@@ -126,7 +126,7 @@ To configure popular agent frameworks automatically:
 avc init --skills claude-code,cursor,windsurf
 ```
 
-For each framework this registers the MCP server in the framework's global config (in your home directory) and writes project-local instruction files. See [`avc init`](/cli/init/#with---skills) and [Agent Integration](/agents/) for details.
+For each framework this registers the MCP server — in the project itself where the framework supports it (Claude Code, Cursor), so the server is scoped to that project — and writes project-local instruction files. See [`avc init`](/cli/init/#with---skills) and [Agent Integration](/agents/) for details.
 
 ## Requirements
 
