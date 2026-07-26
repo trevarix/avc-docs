@@ -49,4 +49,4 @@ Auto-snapshots are labeled `"Auto-snapshot"` with the configured agent name. The
 
 ## Toggle line annotations
 
-Run `Ctrl+Shift+P` → **AVC: Toggle Line Annotations** to show or hide inline gutter annotations indicating which snapshot introduced each line. There's no setting — it's a per-session toggle.
+Run `Ctrl+Shift+P` → **AVC: Toggle Line Annotations** to show or hide inline annotations indicating which snapshot introduced each line. There's no setting — it's a per-session toggle.
