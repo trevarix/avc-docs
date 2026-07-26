@@ -5,7 +5,7 @@ sidebar:
   order: 1
 ---
 
-The AVC extension brings snapshot management directly into VSCode — sidebar, Source Control panel, gutter annotations, and more. Pick the install path that matches how you got AVC.
+The AVC extension brings snapshot management directly into VSCode — sidebar, Source Control panel, inline annotations, and more. Pick the install path that matches how you got AVC.
 
 ## Prerequisites
 
