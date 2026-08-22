@@ -18,7 +18,27 @@ avc mcp serve --compact          # compact JSON for token-sensitive contexts
 
 The server runs over stdio: it reads JSON-RPC 2.0 messages on stdin and writes responses on stdout. Agent frameworks spawn it as a subprocess.
 
-When the server is pointed at a directory with no `.avc/` project, `tools/list` returns an **empty set** — agents never see tools they can't use.
+When the server is pointed at a directory with no `.avc/` project and no search roots, `tools/list` returns only `avc_init` — enough for the agent to offer to set the project up, without exposing snapshot or merge tools that have nothing to act on.
+
+## Search roots: serving several projects
+
+A server launched inside a project resolves it from the working directory. Hosts like [Claude Desktop](/agents/claude-desktop/) have no meaningful working directory, so pass one or more folders to search instead:
+
+```bash
+avc mcp serve ~/Projects ~/work
+```
+
+AVC discovers every `.avc/` project beneath them, up to four levels deep, skipping `node_modules`, `vendor`, `build`, and hidden directories. Discovery stops at a project boundary, so branch workspaces under `.avc/workspaces/` are never listed as separate projects.
+
+| Projects found | Behaviour |
+|----------------|-----------|
+| One | Selected automatically — nothing extra to do |
+| Several | None selected until the agent calls `avc_project_use`; tools that need a project return an error naming `avc_projects_list` as the way forward |
+| None | `avc_init` is available to create one |
+
+The full tool set is advertised whether or not a project has been selected. Clients cache `tools/list`, so tools that only appeared after a selection would often never be seen at all.
+
+`AVC_PROJECT` still takes precedence when set, and a server launched inside a project ignores search roots entirely.
 
 ## Tool tiers
 
@@ -51,6 +71,16 @@ Tools are exposed in three tiers (`--tools core|standard|full`) so agents with s
 | `avc_annotate` | full | [`avc annotate`](/cli/annotate/) |
 | `avc_tag_snapshot` / `avc_untag_snapshot` | full | [`avc snapshot tag`](/cli/snapshot/) |
 | `avc_list_conflicts` / `avc_resolve_conflict` | full | Inspect and resolve merge conflicts |
+
+Three further tools decide *which* project the others act on. They are always available, since they are what makes a project selectable in the first place:
+
+| Tool | Available | Purpose |
+|------|-----------|---------|
+| `avc_init` | always | Initialize AVC in a directory that is not yet a project |
+| `avc_projects_list` | with search roots | List the projects found, marking the active one |
+| `avc_project_use` | with search roots | Switch the active project, by name or path |
+
+`avc_project_use` accepts only projects discovered beneath the configured roots, so an agent cannot be steered onto a path you never exposed.
 
 Each tool's JSON Schema is published via `tools/list` so the agent can discover them programmatically.
 

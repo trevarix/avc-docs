@@ -9,13 +9,32 @@ sidebar:
 
 ## Setup
 
+Two ways in. The plugin is machine-wide and covers every project; `--skills` writes files into one project.
+
+### Option A — install the plugin (recommended)
+
+```
+/plugin marketplace add trevarix/claude-marketplace
+/plugin install agentic-vc@trevarix
+```
+
+One install applies everywhere, so there is nothing to run per repository. It registers the MCP server and adds:
+
+- the AVC **skills** — when to snapshot, branch, restore, merge, and run commands
+- four **slash commands** — `/agentic-vc:snapshot`, `:timeline`, `:review-branch`, `:undo`
+- a **pre-edit hook** that checkpoints the project before an agent's first edit of a session (see [`avc hook pre-edit`](/cli/hook/))
+
+The plugin expects `avc` on your `PATH` and the project initialized with `avc init`. If either is missing, ask Claude to run the bundled `avc-setup` skill and it walks you through both.
+
+### Option B — per-project files
+
 ```bash
 avc init --skills claude-code
 ```
 
-That single command writes everything needed.
+That single command writes everything needed into the current project.
 
-## What gets written
+## What `--skills` writes
 
 ```
 .mcp.json                               ← MCP server registration (project-scoped)

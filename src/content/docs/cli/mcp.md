@@ -8,19 +8,34 @@ Starts an MCP JSON-RPC 2.0 server over stdio, exposing AVC commands as tools tha
 ## Usage
 
 ```bash
-avc mcp serve              # default pretty-printed output
-avc mcp serve --compact    # compact JSON for token-sensitive contexts
+avc mcp serve                       # project resolved from the working directory
+avc mcp serve --tools core          # advertise a smaller tool set
+avc mcp serve --compact             # compact JSON for token-sensitive contexts
+avc mcp serve ~/Projects ~/work     # search folders instead of a working directory
 ```
 
 ## Flags
 
 | Flag | Description |
 |------|-------------|
+| `--tools <tier>` | Tool set to advertise: `core` (4), `standard` (default), or `full` |
 | `--compact` | Emit single-line JSON without indentation (saves tokens for LLM context windows) |
+
+## Resolving the project
+
+In order of precedence:
+
+1. The `AVC_PROJECT` environment variable, when set
+2. A `.avc/` directory found by walking up from the working directory
+3. The search roots given as positional arguments
+
+**Search roots** exist for hosts that launch the server outside any project — [Claude Desktop](/agents/claude-desktop/), for instance. AVC searches each folder up to four levels deep, skipping `node_modules`, `vendor`, `build`, and hidden directories.
+
+With exactly one project found it is selected automatically. With several, the agent picks using `avc_projects_list` and `avc_project_use`, and tools needing a project return an error naming that path forward rather than failing blankly. See [MCP Server](/agents/mcp/) for the full behaviour.
 
 ## Available tools
 
-The server exposes 23 tools that map directly to the CLI:
+The server exposes 30 tools. Most map directly to a CLI command:
 
 | Tool | CLI equivalent |
 |------|----------------|
