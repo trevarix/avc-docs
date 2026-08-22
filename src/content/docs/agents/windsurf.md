@@ -1,8 +1,8 @@
----
+﻿---
 title: Windsurf
 description: Integrate AVC with Windsurf via MCP and Codeium rules.
 sidebar:
-  order: 4
+  order: 5
 ---
 
 [Windsurf](https://codeium.com/windsurf) is Codeium's agent-first IDE. AVC integrates via Codeium's MCP server convention and `.windsurfrules`.

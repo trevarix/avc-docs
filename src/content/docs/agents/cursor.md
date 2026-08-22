@@ -1,8 +1,8 @@
----
+﻿---
 title: Cursor
 description: Integrate AVC with Cursor via MCP and rules.
 sidebar:
-  order: 3
+  order: 4
 ---
 
 [Cursor](https://cursor.sh/) supports MCP servers and per-project rules. AVC plugs into both.

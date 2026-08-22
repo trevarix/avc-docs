@@ -9,13 +9,24 @@ import { LinkCard, CardGrid } from '@astrojs/starlight/components';
 
 AVC integrates with AI agent frameworks via the [Model Context Protocol](https://modelcontextprotocol.io/) — every CLI command is exposed as a tool that agents can call directly.
 
-## One-shot setup
+## Pick your path
+
+**Claude Code** — install the plugin once and it applies to every project:
+
+```
+/plugin marketplace add trevarix/claude-marketplace
+/plugin install agentic-vc@trevarix
+```
+
+**Claude Desktop** — install the `.mcpb` extension; it carries the `avc` binary, so there is nothing else to set up. See [Claude Desktop](/agents/claude-desktop/).
+
+**Cursor, Windsurf, or a single project** — write the config and instruction files into the project:
 
 ```bash
 avc init --skills claude-code,cursor,windsurf
 ```
 
-This writes the right config and instruction files for each framework into your project. No further setup needed — open your editor, the agent finds AVC automatically.
+No further setup needed — open your editor, the agent finds AVC automatically.
 
 ## Pages in this section
 
@@ -23,12 +34,17 @@ This writes the right config and instruction files for each framework into your 
   <LinkCard
     title="MCP Server"
     href="/agents/mcp/"
-    description="How AVC exposes its 14 commands as MCP tools. Tool list, manual config, troubleshooting."
+    description="How AVC exposes its commands as 30 MCP tools. Tool tiers, search roots, manual config, troubleshooting."
   />
   <LinkCard
     title="Claude Code"
     href="/agents/claude-code/"
-    description="Project-level .mcp.json + skill files. Workflow walkthrough and troubleshooting."
+    description="Install the plugin, or write project-level .mcp.json + skill files. Workflow walkthrough and troubleshooting."
+  />
+  <LinkCard
+    title="Claude Desktop"
+    href="/agents/claude-desktop/"
+    description="One-click .mcpb extension with the binary bundled. Search folders, multi-project switching, upgrade notes."
   />
   <LinkCard
     title="Cursor"

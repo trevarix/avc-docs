@@ -108,6 +108,23 @@ Your default browser opens to `http://127.0.0.1:3004/`. Use this if you don't us
 
 See the [Web UI guide](/web-ui/) for screenshots and the REST API reference.
 
+## Claude Desktop extension
+
+Claude Desktop installs AVC as a one-click extension with the `avc` binary bundled inside — no separate CLI install needed.
+
+Download the `.mcpb` for your platform from the [latest release](https://github.com/trevarix/agentic-vc/releases/latest), then in Claude Desktop: **Settings → Extensions → Advanced settings → Install Extension…**
+
+See [Claude Desktop](/agents/claude-desktop/) for choosing project folders and working across several projects.
+
+## Claude Code plugin
+
+```
+/plugin marketplace add trevarix/claude-marketplace
+/plugin install agentic-vc@trevarix
+```
+
+One install covers every project, instead of running `avc init --skills` in each. Requires `avc` on your `PATH`. See [Claude Code](/agents/claude-code/).
+
 ## MCP server (for AI agents)
 
 Agents that speak the [Model Context Protocol](https://modelcontextprotocol.io/) can call AVC as a tool. The server is built into the CLI:
